@@ -1,12 +1,25 @@
-import React from 'react'
+'use client';
+import React, { ChangeEvent, ChangeEventHandler, useState } from 'react'
 
-function Textarea({ inputType }: { inputType: "q" | "a"}) {
+type TextareaProps = {
+    value: string;
+    setCard: (val: string) => void;
+    placeholder: string;
+}
+
+function Textarea({ value, setCard, placeholder }: TextareaProps) {
+    
+    const handleChanges = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setCard(e.target.value);
+    }
+
     return (
         <textarea
-            className='bg-white rounded-md min-h-25 p-2 text-sm my-2 field-sizing-content overflow-y-hidden resize-none'
-            name=""
-            id=""
-            placeholder={`${inputType === "q" ? "Enter your questions..." : "Enter the answer..."}`}>
+            className='bg-white rounded-md min-h-25 p-2 text-sm my-2 field-sizing-content'
+            value={value}
+            onChange={handleChanges}
+            placeholder={placeholder}
+        >
         </textarea>
     )
 }

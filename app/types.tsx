@@ -1,4 +1,5 @@
 export type CardT = {
+    id: number
     q: string,
     a: string
 }

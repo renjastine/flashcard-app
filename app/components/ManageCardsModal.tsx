@@ -16,7 +16,13 @@ import { initialCards } from '../data';
 
 const ManageCardsModal = () => {
   const [flashCards, setFlashCards] = useState<CardT[]>(() => initialCards);
-  const [card, setCard] = useState({ q: "", a: "" });
+  
+  const [card, setCard] = useState<CardT>(() => {
+    const lastIndex = flashCards.length - 1
+    const cardLastId = flashCards[lastIndex].id
+
+    return { id: cardLastId + 1, q: "", a: "" }
+  });
 
   return (
     <div className='bg-black/30 fixed w-screen h-screen z-1 top-0 left-0 flex items-center justify-center px-4'>
@@ -48,7 +54,7 @@ const ManageCardsModal = () => {
           <h1 className='mt-4 text-sm mb-2'>Your Flashcards ({flashCards.length})</h1>
           <div className='flex flex-col gap-3'>
             {flashCards.map(
-              (card, i) => <Card key={i} id={i} question={card.q} answer={card.a} />
+              (card, i) => <Card key={i} id={card.id} question={card.q} answer={card.a} />
             )}
           </div>
         </div>

@@ -11,8 +11,11 @@ import Card from './Card'
 // Types
 import { CardT } from '../types';
 
+// Data
+import { initialCards } from '../data';
+
 const ManageCardsModal = () => {
-  const [flashCards, setFlashCards] = useState<CardT[]>([]);
+  const [flashCards, setFlashCards] = useState<CardT[]>(() => initialCards);
   const [card, setCard] = useState({ q: "", a: "" });
 
   return (
@@ -45,7 +48,7 @@ const ManageCardsModal = () => {
           <h1 className='mt-4 text-sm mb-2'>Your Flashcards ({flashCards.length})</h1>
           <div className='flex flex-col gap-3'>
             {flashCards.map(
-              (card, i) => <Card id={i} question={card.q} answer={card.a} />
+              (card, i) => <Card key={i} id={i} question={card.q} answer={card.a} />
             )}
           </div>
         </div>

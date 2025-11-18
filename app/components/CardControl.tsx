@@ -1,18 +1,19 @@
-import React from 'react'
-
+// Components
 import CancelUpdate from './CancelUpdate'
 import UpdateCard from './UpdateCard'
 import AddCard from './AddCard'
 import SaveCard from './SaveCard'
 
-type CardControlProps = {
-    card: { q: string, a: string };
-}
+// Types
+import { AddFlashCardProps } from '../types/types';
 
-function CardControl({ card } : CardControlProps) {
+function CardControl({ card, setFlashCards }: AddFlashCardProps) {
     return (
         <div className='flex gap-2 flex-wrap'>
-            <AddCard card={card}/>
+            <AddCard
+                card={card}
+                setFlashCards={val => setFlashCards(val)}
+            />
             <SaveCard />
             <UpdateCard />
             <CancelUpdate />

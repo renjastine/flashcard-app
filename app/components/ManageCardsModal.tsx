@@ -1,13 +1,20 @@
 'use client';
 
-import React, { useState } from 'react'
+// Hooks
+import { useEffect, useState } from 'react'
+
+// Components
 import Textarea from './Textarea'
 import CardControl from './CardControl'
 import Card from './Card'
 
+// Types
+import { CardT } from '../types/types';
+
 const ManageCardsModal = () => {
+  const [flashCards, setFlashCards] = useState<CardT[]>([]);
   const [card, setCard] = useState({ q: "", a: "" });
-  
+
   return (
     <div className='bg-black/30 fixed w-screen h-screen z-1 top-0 left-0 flex items-center justify-center px-4'>
       <div className="flex flex-col justify-center w-full max-w-[700px] h-[95%] bg-white rounded-md shadow-md p-4 relative">
@@ -30,11 +37,16 @@ const ManageCardsModal = () => {
               setCard={val => setCard({ ...card, a: val })}
               placeholder='Enter the answer...'
             />
-            <CardControl card={card}/>
+            <CardControl
+              card={card}
+              setFlashCards={val => setFlashCards(prev => [...prev, val])}
+            />
           </div>
-          <h1 className='mt-4 text-sm mb-2'>Your Flashcards (1)</h1>
+          <h1 className='mt-4 text-sm mb-2'>Your Flashcards ({flashCards.length})</h1>
           <div className='flex flex-col gap-3'>
-            <Card />
+            {flashCards.map(
+              (card, i) => <Card id={i} question={card.q} answer={card.a} />
+            )}
           </div>
         </div>
       </div>

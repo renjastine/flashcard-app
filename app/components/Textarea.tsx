@@ -1,5 +1,4 @@
-'use client';
-import React, { ChangeEvent, ChangeEventHandler, useState } from 'react'
+import { ChangeEvent } from 'react'
 
 type TextareaProps = {
     value: string;
@@ -8,11 +7,9 @@ type TextareaProps = {
 }
 
 function Textarea({ value, setCard, placeholder }: TextareaProps) {
-    
     const handleChanges = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setCard(e.target.value);
     }
-
     return (
         <textarea
             className='bg-white rounded-md min-h-25 p-2 text-sm my-2 field-sizing-content'

@@ -1,4 +1,4 @@
-import { AddFlashCardProps } from "../types/types";
+import { AddFlashCardProps } from "../types";
 
 function AddCard({ card, setFlashCards }: AddFlashCardProps) {
     const handleClick = () => {

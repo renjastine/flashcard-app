@@ -5,7 +5,7 @@ import AddCard from './AddCard'
 import SaveCard from './SaveCard'
 
 // Types
-import { AddFlashCardProps } from '../types/types';
+import { AddFlashCardProps } from '../types';
 
 function CardControl({ card, setFlashCards }: AddFlashCardProps) {
     return (

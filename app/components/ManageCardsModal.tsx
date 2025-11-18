@@ -9,7 +9,7 @@ import CardControl from './CardControl'
 import Card from './Card'
 
 // Types
-import { CardT } from '../types/types';
+import { CardT } from '../types';
 
 const ManageCardsModal = () => {
   const [flashCards, setFlashCards] = useState<CardT[]>([]);

@@ -54,7 +54,15 @@ const ManageCardsModal = () => {
           <h1 className='mt-4 text-sm mb-2'>Your Flashcards ({flashCards.length})</h1>
           <div className='flex flex-col gap-3'>
             {flashCards.map(
-              (card, i) => <Card key={i} id={card.id} question={card.q} answer={card.a} />
+              (card, i) =>
+                <Card
+                  key={i}
+                  keyID={i}
+                  id={card.id}
+                  question={card.q}
+                  answer={card.a}
+                  flashCards={flashCards}
+                />
             )}
           </div>
         </div>

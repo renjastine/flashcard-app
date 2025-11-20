@@ -16,11 +16,21 @@ import { initialCards } from '../data';
 
 const ManageCardsModal = () => {
   const [flashCards, setFlashCards] = useState<CardT[]>(initialCards);
+
+  const createUniqueId = (): number => {
+    const sorted = [...flashCards].sort((a, b) => a.id - b.id);
+
+    if (sorted.length > 0)
+      return sorted[sorted.length - 1].id + 1
+
+    return 1
+  }
+
   const [card, setCard] = useState<CardT>({
-    id: flashCards.length > 0 ? flashCards[flashCards.length - 1].id + 1 : 1,
+    id: createUniqueId(),
     q: "",
     a: ""
-  }); ``
+  });
 
   return (
     <div className='bg-black/30 fixed w-screen h-screen z-1 top-0 left-0 flex items-center justify-center px-4'>
@@ -47,6 +57,7 @@ const ManageCardsModal = () => {
             <CardControl
               card={card}
               setCard={setCard}
+              createUniqueId={createUniqueId}
               setFlashCards={val => setFlashCards(prev => [...prev, val])}
               flashCards={flashCards}
             />
@@ -56,12 +67,12 @@ const ManageCardsModal = () => {
             {flashCards.map(
               (card, i) =>
                 <Card
-                  key={i}
+                  key={card.id}
                   keyID={i}
-                  id={card.id}
                   question={card.q}
                   answer={card.a}
                   flashCards={flashCards}
+                  setFlashCards={val => setFlashCards(val)}
                 />
             )}
           </div>

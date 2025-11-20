@@ -6,11 +6,13 @@ export const initialCards: CardT[] = [
     q: "What is 2 + 2?",
     a: "4"
   },
-  { id: 2,
+  {
+    id: 2,
     q: "What is the capital of France?",
     a: "Paris"
   },
-  { id: 3,
+  {
+    id: 3,
     q: "What is the largest planet on solar system?",
     a: "Jupiter"
   },

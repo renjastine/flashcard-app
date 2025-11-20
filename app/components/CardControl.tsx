@@ -11,13 +11,15 @@ function CardControl({
     card,
     setCard,
     setFlashCards,
-    flashCards
+    flashCards,
+    createUniqueId
 }: AddFlashCardProps) {
     return (
         <div className='flex gap-2 flex-wrap'>
             <AddCard
                 card={card}
                 setCard={setCard}
+                createUniqueId={createUniqueId}
                 setFlashCards={val => setFlashCards(val)}
                 flashCards={flashCards}
             />

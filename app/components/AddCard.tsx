@@ -6,7 +6,8 @@ function AddCard({
     card,
     setCard,
     setFlashCards,
-    flashCards
+    flashCards,
+    createUniqueId
 }: AddFlashCardProps) {
 
     const handleClick = () => {
@@ -14,7 +15,7 @@ function AddCard({
     }
 
     useEffect(() => {
-        const nextID = flashCards.length > 0 ? flashCards[flashCards.length - 1].id + 1 : 1;
+        const nextID = createUniqueId();
         setCard({ id: nextID, q: "", a: "" });
     }, [flashCards])
 

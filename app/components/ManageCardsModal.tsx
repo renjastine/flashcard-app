@@ -22,11 +22,6 @@ const ManageCardsModal = () => {
     a: ""
   }); ``
 
-  useEffect(() => {
-
-    console.log(flashCards);
-  }, [flashCards])
-
   return (
     <div className='bg-black/30 fixed w-screen h-screen z-1 top-0 left-0 flex items-center justify-center px-4'>
       <div className="flex flex-col justify-center w-full max-w-[700px] h-[95%] bg-white rounded-md shadow-md p-4 relative">

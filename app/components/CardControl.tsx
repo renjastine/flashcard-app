@@ -20,7 +20,12 @@ function CardControl({
         <div className='flex gap-2 flex-wrap'>
             {editMode ?
                 <>
-                    <UpdateCard />
+                    <UpdateCard 
+                        card={card}
+                        flashCards={flashCards}
+                        setFlashCards={setFlashCards}
+                        setEditMode={setEditMode}
+                    />
                     <CancelUpdate
                         setEditMode={setEditMode}
                     />

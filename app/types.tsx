@@ -7,7 +7,7 @@ export type TextareaProps = {
 }
 
 export type CardT = {
-    id: number
+    readonly id: number
     q: string,
     a: string
 }
@@ -46,4 +46,11 @@ export type CardListControlProps = {
     setFlashCards: (val: CardT[]) => void;
     setEditMode?: (val: boolean) => void;
     containerRef?: RefObject<HTMLDivElement | null>;
+}
+
+export type UpdateCardProps = {
+    card: CardT;
+    flashCards: CardT[];
+    setFlashCards: (val: CardT) => void;
+    setEditMode: (val: boolean) => void;
 }

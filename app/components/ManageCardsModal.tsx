@@ -1,7 +1,7 @@
 'use client';
 
 // Hooks
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 // Components
 import Textarea from './Textarea'
@@ -16,6 +16,8 @@ import { initialCards } from '../data';
 
 const ManageCardsModal = () => {
   const [flashCards, setFlashCards] = useState<CardT[]>(initialCards);
+  const [editMode, setEditMode] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const createUniqueId = (): number => {
     const sorted = [...flashCards].sort((a, b) => a.id - b.id);
@@ -40,15 +42,15 @@ const ManageCardsModal = () => {
           <h1 className='text-xl font-medium'>Manage Flashcards</h1>
         </div>
         <h2 className='text-sm text-stone-400 my-2'>Add, Edit, Delete, or Reorder your flashcards</h2>
-        <div className='max-h-123 overflow-y-auto text-sm'>
-          <div className='rounded-md w-full flex flex-col px-4 py-5 bg-gray-200'>
-            <h1>Question</h1>
+        <div ref={containerRef} className='max-h-123 overflow-y-auto text-sm'>
+          <dl className='rounded-md w-full flex flex-col px-4 py-5 bg-gray-200'>
+            <dt>Question</dt>
             <Textarea
               value={card.q}
               setCard={val => setCard({ ...card, q: val })}
               placeholder='Enter your question...'
             />
-            <h1 className='mt-4'>Answer</h1>
+            <dt className='mt-4'>Answer</dt>
             <Textarea
               value={card.a}
               setCard={val => setCard({ ...card, a: val })}
@@ -60,8 +62,10 @@ const ManageCardsModal = () => {
               createUniqueId={createUniqueId}
               setFlashCards={val => setFlashCards(prev => [...prev, val])}
               flashCards={flashCards}
+              editMode={editMode}
+              setEditMode={setEditMode}
             />
-          </div>
+          </dl>
           <h1 className='mt-4 text-sm mb-2'>Your Flashcards ({flashCards.length})</h1>
           <div className='flex flex-col gap-3'>
             {flashCards.map(
@@ -69,10 +73,14 @@ const ManageCardsModal = () => {
                 <Card
                   key={card.id}
                   keyID={i}
+                  cardID={card.id}
+                  setCard={setCard}
                   question={card.q}
                   answer={card.a}
                   flashCards={flashCards}
                   setFlashCards={val => setFlashCards(val)}
+                  setEditMode={val => setEditMode(val)}
+                  containerRef={containerRef}
                 />
             )}
           </div>

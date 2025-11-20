@@ -5,27 +5,39 @@ import AddCard from './AddCard'
 import SaveCard from './SaveCard'
 
 // Types
-import { AddFlashCardProps } from '../types';
+import { CardControlProp } from '../types';
 
 function CardControl({
     card,
     setCard,
     setFlashCards,
     flashCards,
-    createUniqueId
-}: AddFlashCardProps) {
+    createUniqueId,
+    editMode,
+    setEditMode
+}: CardControlProp) {
     return (
         <div className='flex gap-2 flex-wrap'>
-            <AddCard
-                card={card}
-                setCard={setCard}
-                createUniqueId={createUniqueId}
-                setFlashCards={val => setFlashCards(val)}
-                flashCards={flashCards}
-            />
-            <SaveCard />
-            <UpdateCard />
-            <CancelUpdate />
+            {editMode ?
+                <>
+                    <UpdateCard />
+                    <CancelUpdate
+                        setEditMode={setEditMode}
+                    />
+                </> :
+                <>
+                    <AddCard
+                        card={card}
+                        setCard={setCard}
+                        createUniqueId={createUniqueId}
+                        setFlashCards={val => setFlashCards(val)}
+                        flashCards={flashCards}
+                    />
+                    <SaveCard />
+                </>
+            }
+
+
         </div>
     )
 }

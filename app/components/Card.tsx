@@ -1,15 +1,17 @@
 import CardListControl from './CardListControl'
-import { CardT } from '../types';
+import { CardProps } from '../types';
 
-type CardProps = {
-    keyID: number;
-    question: string;
-    answer: string;
-    flashCards: CardT[];
-    setFlashCards: (val: CardT[]) => void;
-}
-
-function Card({ keyID, question, answer, flashCards, setFlashCards }: CardProps) {
+function Card({
+    keyID,
+    cardID,
+    setCard,
+    question,
+    answer,
+    flashCards,
+    setFlashCards,
+    setEditMode,
+    containerRef,
+}: CardProps) {
     return (
         <div className='border border-black/25 w-full min-h-5 rounded-lg flex flex-col px-6 py-4 gap-4 hover:bg-gray-100'>
             <div className='flex max-[321px]:justify-center justify-end w-full gap-5 border-b pb-4'>
@@ -25,8 +27,17 @@ function Card({ keyID, question, answer, flashCards, setFlashCards }: CardProps)
                     flashCards={flashCards}
                     setFlashCards={setFlashCards}
                 />
-                {/* <CardListControl controlName="edit" />
-                <CardListControl controlName="delete" /> */}
+                <CardListControl
+                    controlName="edit"
+                    keyID={keyID}
+                    cardID={cardID}
+                    setCard={setCard}
+                    flashCards={flashCards}
+                    setFlashCards={setFlashCards}
+                    setEditMode={setEditMode}
+                    containerRef={containerRef}
+                />
+                {/* <CardListControl controlName="delete" /> */}
             </div>
             <div className='flex gap-3'>
                 <div className='flex-none pt-1'>

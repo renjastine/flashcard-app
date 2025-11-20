@@ -1,13 +1,14 @@
-import { CardT } from "../types";
-
-type CardListControlProps = {
-    controlName: "moveUp" | "moveDown" | "moveUpDisabled" | "moveDownDisabled" | "edit" | "delete",
-    keyID: number;
-    flashCards: CardT[];
-    setFlashCards: (val: CardT[]) => void;
-}
-
-function CardListControl({ controlName, keyID, flashCards, setFlashCards }: CardListControlProps) {
+import { CardListControlProps, CardT } from "../types";
+function CardListControl({
+    controlName,
+    keyID,
+    cardID,
+    setCard,
+    flashCards,
+    setFlashCards,
+    setEditMode,
+    containerRef
+}: CardListControlProps) {
 
     const controlMap: Record<string, string> = {
         moveUp: "move-up.svg",
@@ -26,9 +27,20 @@ function CardListControl({ controlName, keyID, flashCards, setFlashCards }: Card
         setFlashCards(copyFlashCards);
     }
 
+    function editCard() {
+        setEditMode?.(true);
+        containerRef?.current?.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+        const card = flashCards.find(c => c.id === cardID);
+        if (card) setCard?.(card)
+    }
+
     const handleClick = () => {
         if (controlName === "moveUp") moveCard("up")
         if (controlName === "moveDown") moveCard("down")
+        if (controlName === "edit") editCard()
     }
 
     return (

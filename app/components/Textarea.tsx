@@ -1,10 +1,5 @@
 import { ChangeEvent } from 'react'
-
-type TextareaProps = {
-    value: string;
-    setCard: (val: string) => void;
-    placeholder: string;
-}
+import { TextareaProps } from '../types';
 
 function Textarea({ value, setCard, placeholder }: TextareaProps) {
     const handleChanges = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -12,7 +7,7 @@ function Textarea({ value, setCard, placeholder }: TextareaProps) {
     }
     return (
         <textarea
-            className='bg-white rounded-md min-h-25 p-2 text-sm my-2 field-sizing-content'
+            className='bg-white rounded-md min-h-25 p-2 text-sm my-2 field-sizing-content resize-none'
             value={value}
             onChange={handleChanges}
             placeholder={placeholder}

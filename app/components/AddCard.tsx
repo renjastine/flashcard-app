@@ -1,14 +1,6 @@
 'use client';
-import { useEffect, useState } from "react";
-import { CardT } from "../types";
-import next from "next";
-
-type AddFlashCardProps = {
-    card: CardT;
-    setCard: (val: CardT) => void;
-    setFlashCards: (val: CardT) => void;
-    flashCards: CardT[]
-}
+import { useEffect } from "react";
+import { AddFlashCardProps } from "../types";
 
 function AddCard({
     card,

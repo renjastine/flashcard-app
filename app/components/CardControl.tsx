@@ -5,14 +5,7 @@ import AddCard from './AddCard'
 import SaveCard from './SaveCard'
 
 // Types
-import { CardT } from '../types';
-
-type AddFlashCardProps = {
-    card: CardT;
-    setCard: (val: CardT) => void;
-    setFlashCards: (val: CardT) => void;
-    flashCards: CardT[]
-}
+import { AddFlashCardProps } from '../types';
 
 function CardControl({
     card,

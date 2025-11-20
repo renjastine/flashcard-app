@@ -6,5 +6,7 @@ export type CardT = {
 
 export type AddFlashCardProps = {
     card: CardT;
+    setCard: (val: CardT) => void;
     setFlashCards: (val: CardT) => void;
+    flashCards: CardT[]
 }

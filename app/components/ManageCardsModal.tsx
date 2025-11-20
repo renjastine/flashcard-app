@@ -1,7 +1,7 @@
 'use client';
 
 // Hooks
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 // Components
 import Textarea from './Textarea'
@@ -17,7 +17,7 @@ import { initialCards } from '../data';
 const ManageCardsModal = () => {
   const [flashCards, setFlashCards] = useState<CardT[]>(initialCards);
   const [card, setCard] = useState<CardT>({
-    id: flashCards[flashCards.length - 1].id + 1,
+    id: flashCards.length > 0 ? flashCards[flashCards.length - 1].id + 1 : 1,
     q: "",
     a: ""
   }); ``

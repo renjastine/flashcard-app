@@ -9,15 +9,24 @@ import { CardT } from '../types';
 
 type AddFlashCardProps = {
     card: CardT;
+    setCard: (val: CardT) => void;
     setFlashCards: (val: CardT) => void;
+    flashCards: CardT[]
 }
 
-function CardControl({ card, setFlashCards }: AddFlashCardProps) {
+function CardControl({
+    card,
+    setCard,
+    setFlashCards,
+    flashCards
+}: AddFlashCardProps) {
     return (
         <div className='flex gap-2 flex-wrap'>
             <AddCard
                 card={card}
+                setCard={setCard}
                 setFlashCards={val => setFlashCards(val)}
+                flashCards={flashCards}
             />
             <SaveCard />
             <UpdateCard />

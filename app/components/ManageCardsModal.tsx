@@ -7,13 +7,13 @@ import CardControl from './CardControl'
 import Textarea from './Textarea'
 import Card from './Card'
 
-import { CardT } from '../types';
+import { CardT, ManageCardsModalProps } from '../types';
 import { createCards } from '../data';
 
-
-const ManageCardsModal = () => {
+const ManageCardsModal = ({ setManageCard }: ManageCardsModalProps) => {
   const [flashCards, setFlashCards] = useState<CardT[]>([]);
   const [editMode, setEditMode] = useState(false);
+  const [translateY, setTranslateY] = useState("translate-y-50 opacity-0")
   const containerRef = useRef<HTMLDivElement>(null);
 
   const createUniqueId = (): number => {
@@ -36,12 +36,29 @@ const ManageCardsModal = () => {
     const initialCards = storage && storage !== "[]" ? JSON.parse(storage) : createCards;
     setFlashCards(initialCards)
 
+    setTimeout(() => {
+      setTranslateY("translate-y-0");
+    }, 1)
   }, [])
+
+  const handleClick = () => {
+    setTranslateY("translate-y-50 opacity-0");
+    setTimeout(() => {
+      setManageCard(false);
+    }, 300)
+  }
 
   return (
     <div className='bg-black/30 fixed w-screen h-screen z-1 top-0 left-0 flex items-center justify-center px-4'>
-      <div className="flex flex-col justify-center w-full max-w-[700px] h-[95%] bg-white rounded-md shadow-md p-4 relative">
-        <img src="/x-close.svg" className='w-4 absolute top-4 right-4 cursor-pointer' alt="close" />
+      <div
+        className={`transition ${translateY} duration-300 ease-in flex flex-col justify-center w-full max-w-[700px] h-[95%] bg-white rounded-md shadow-md p-4 relative`}
+      >
+        <div
+          onClick={handleClick}
+          className="w-4 absolute top-4 right-4 cursor-pointer select-none"
+        >
+          <img src="/x-close.svg" className='pointer-events-none' alt="close" />
+        </div>
         <div className='flex justify-between'>
           <h1 className='text-xl font-medium'>Manage Flashcards</h1>
         </div>

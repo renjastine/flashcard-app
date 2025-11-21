@@ -64,3 +64,7 @@ export type DeleteAllProps = {
 export type SaveCardProps = {
     flashCards: CardT[];
 }
+
+export type ManageCardsModalProps = {
+    setManageCard: (val: boolean) => void;
+}

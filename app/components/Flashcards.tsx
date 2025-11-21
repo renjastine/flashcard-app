@@ -14,7 +14,7 @@ const Flashcards = () => {
           <p className='text-fuchsia-600'>Question</p>
           <p className='w-full text-center text-wrap max-h-72 overflow-auto-y'>What is 2 + 2?</p>
         </div>
-        <p className='text-gray-400'>Click to reveal answer</p>
+        <p className='text-gray-400 select-none'>Click to reveal answer</p>
       </div>
 
       <div className="card-face card-back bg-linear-35 from-purple-500 to-purple-400 h-full flex flex-col justify-center items-center rounded-md shadow-md">
@@ -22,7 +22,7 @@ const Flashcards = () => {
           <p className='text-white'>Answer</p>
           <p className='w-full text-center text-wrap max-h-72 overflow-auto-y text-white'>4</p>
         </div>
-        <p className='text-gray-200'>Click to see question</p>
+        <p className='text-gray-200 select-none'>Click to see question</p>
       </div>
     </div>
   )

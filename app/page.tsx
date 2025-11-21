@@ -1,13 +1,24 @@
+'use client';
+import { useState } from "react";
 import Flashcards from "./components/Flashcards";
 import ManageCardsModal from "./components/ManageCardsModal";
 
 export default function Home() {
+  const [manageCard, setManageCard] = useState(false)
+
+  const handleClick = () => {
+    setManageCard(true);
+  }
+
   return (
     <div className="flex justify-center w-screen h-screen">
       <main className="flex flex-col justify-center items-center p-4 w-full max-w-[730px] gap-6">
         < div className="flex justify-between items-center w-full" >
           < h1 className="" > Flashcard Quiz</h1 >
-          < button className="flex items-center border px-3 gap-2 h-9 bg-stone-900 text-stone-100 rounded-md" >
+          < button
+            onClick={handleClick}
+            className="select-none flex items-center border px-3 gap-2 h-9 bg-stone-900 text-stone-100 rounded-md cursor-pointer"
+          >
             <img className="w-4" src="/add-white.svg" alt="add" />
             Manage Cards
           </button >
@@ -24,7 +35,10 @@ export default function Home() {
             <img src="/next.svg" className='w-4' alt="shuffle" />
           </button>
         </div>
-        <ManageCardsModal />
+        {manageCard &&
+          <ManageCardsModal
+            setManageCard={setManageCard}
+          />}
       </main>
     </div>
   );

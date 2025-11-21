@@ -1,10 +1,8 @@
-// Components
 import CancelUpdate from './CancelUpdate'
 import UpdateCard from './UpdateCard'
 import AddCard from './AddCard'
 import SaveCard from './SaveCard'
 
-// Types
 import { CardControlProp } from '../types';
 import { useState } from 'react';
 

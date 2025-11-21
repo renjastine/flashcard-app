@@ -8,10 +8,8 @@ import Textarea from './Textarea'
 import Card from './Card'
 
 import { CardT, ManageCardsModalProps } from '../types';
-import { createCards } from '../data';
 
 const ManageCardsModal = ({ setCurrentIndex, setManageCard, flashcards, setFlashcards }: ManageCardsModalProps) => {
-  // const [manageFlashcards, setManageFlashcards] = useState<CardT[]>([]);
   const [editMode, setEditMode] = useState(false);
   const [translateY, setTranslateY] = useState("translate-y-50 opacity-0")
   const containerRef = useRef<HTMLDivElement>(null);

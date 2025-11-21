@@ -1,13 +1,15 @@
 'use client';
 import { useEffect, useState } from "react";
-import Flashcards from "./components/Flashcards";
+
 import ManageCardsModal from "./components/ManageCardsModal";
-import { CardT } from "./types";
-import { createCards } from "./data";
+import ShuffleCard from "./components/ShuffleCard";
+import Flashcards from "./components/Flashcards";
 import NoDisplay from "./components/NoDisplay";
 import NextCard from "./components/NextCard";
 import PrevCard from "./components/PrevCard";
-import ShuffleCard from "./components/ShuffleCard";
+
+import { createCards } from "./data";
+import { CardT } from "./types";
 
 export default function Home() {
   const [manageCard, setManageCard] = useState(false)
@@ -50,7 +52,9 @@ export default function Home() {
                 className="select-none flex items-center border px-3 gap-2 h-9 bg-stone-900 text-stone-100 rounded-md cursor-pointer"
               >
                 <img className="w-4 pointer-events-none" src="/add-white.svg" alt="add" />
-                Manage Cards
+                <span className="max-[375px]:hidden">
+                  Manage Cards
+                </span>
               </button >
             </div >
             <h1 className="text-stone-400">Card {currentIndex + 1} of {flashcards.length}</h1>

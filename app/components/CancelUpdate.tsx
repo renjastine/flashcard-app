@@ -1,6 +1,5 @@
-type CancelUpdateProps = {
-    setEditMode: (val: boolean) => void;
-}
+import { CancelUpdateProps } from "../types"
+
 function CancelUpdate({ setEditMode }: CancelUpdateProps) {
     const handleClick = () => {
         setEditMode(false)

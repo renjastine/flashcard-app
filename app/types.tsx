@@ -1,8 +1,10 @@
 import { RefObject } from "react";
 
+type Setter<T> = (val: T) => void;
+
 export type TextareaProps = {
     value: string;
-    setCard: (val: string) => void;
+    setCard: Setter<string>;
     placeholder: string;
 }
 
@@ -14,26 +16,26 @@ export type CardT = {
 
 export type AddFlashCardProps = {
     card: CardT;
-    setCard: (val: CardT) => void;
-    setFlashcards: (val: CardT) => void;
+    setCard: Setter<CardT>;
+    setFlashcards: Setter<CardT>;
     flashcards: CardT[];
     createUniqueId: () => number;
-    setMessage?: (val: string) => void;
+    setMessage?: Setter<string>;
 }
 
 export type CardControlProp = AddFlashCardProps & {
     editMode: boolean;
-    setEditMode: (val: boolean) => void;
+    setEditMode: Setter<boolean>;
 };
 
 export type CardProps = {
     keyID: number;
-    setCard: (val: CardT) => void;
+    setCard: Setter<CardT>;
     question: string;
     answer: string;
     flashcards: CardT[];
-    setFlashcards: (val: CardT[]) => void;
-    setEditMode: (val: boolean) => void;
+    setFlashcards: Setter<CardT[]>;
+    setEditMode: Setter<boolean>;
     containerRef: RefObject<HTMLDivElement | null>;
     cardID: number
 }
@@ -41,58 +43,62 @@ export type CardProps = {
 export type CardListControlProps = {
     keyID: number;
     cardID?: number;
-    setCard?: (val: CardT) => void;
+    setCard?: Setter<CardT>;
     controlName: string,
     flashCards: CardT[];
-    setFlashCards: (val: CardT[]) => void;
-    setEditMode?: (val: boolean) => void;
+    setFlashCards: Setter<CardT[]>
+    setEditMode?: Setter<boolean>;
     containerRef?: RefObject<HTMLDivElement | null>;
 }
 
 export type UpdateCardProps = {
     card: CardT;
     flashCards: CardT[];
-    setFlashCards: (val: CardT) => void;
-    setEditMode: (val: boolean) => void;
+    setFlashCards: Setter<CardT>;
+    setEditMode: Setter<boolean>;
 }
 
 export type DeleteAllProps = {
     editMode: boolean;
-    setEditMode: (val: boolean) => void;
-    setFlashCards: (val: CardT[]) => void;
+    setEditMode: Setter<boolean>;
+    setFlashCards: Setter<CardT[]>
 }
 
 export type SaveCardProps = {
-    setMessage: (val: string) => void;
+    setMessage: Setter<string>;
     flashCards: CardT[];
 }
 
 export type NoDisplayProps = {
-    setManageCard: (val: boolean) => void;
+    setManageCard: Setter<boolean>;
 }
 
 export type ManageCardsModalProps = NoDisplayProps & {
-    setCurrentIndex: (val: number) => void;
+    setCurrentIndex: Setter<number>;
     flashcards: CardT[];
-    setFlashcards: (val: CardT | CardT[]) => void
+    setFlashcards: Setter<CardT | CardT[]>;
 }
 
 export type FlashcardProps = {
     flipped: boolean;
-    setFlipped: (val: boolean) => void;
+    setFlipped: Setter<boolean>;
     question: string;
     answer: string;
 }
 
 export type NextCardProps = {
-    setFlipped: (val: boolean) => void;
+    setFlipped: Setter<boolean>;
     flashcardsLen: number;
     currentIndex: number;
-    setCurrentIndex: (val: number) => void;
+    setCurrentIndex: Setter<number>;
 }
 
 export type ShuffleCardProps = {
-    setCurrentIndex: (val: number) => void;
+    setCurrentIndex: Setter<number>;
     flashcards: CardT[];
-    setFlashcards: (val: CardT[]) => void;
+    setFlashcards: Setter<CardT[]>
+}
+
+export type CancelUpdateProps = {
+    setEditMode: Setter<boolean>;
 }

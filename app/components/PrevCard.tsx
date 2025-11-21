@@ -4,7 +4,7 @@ function PrevCard({ setFlipped, flashcardsLen, currentIndex, setCurrentIndex }: 
     const handleClick = () => {
         setFlipped(false)
 
-        setTimeout(()=>{
+        setTimeout(() => {
             setCurrentIndex(currentIndex > 0 ? currentIndex - 1 : flashcardsLen - 1);
         }, 300)
     }
@@ -15,7 +15,9 @@ function PrevCard({ setFlipped, flashcardsLen, currentIndex, setCurrentIndex }: 
             className='cursor-pointer flex items-center px-5 gap-3 h-10 bg-gray-950 rounded-md shadow-sm text-gray-50 select-none'
         >
             <img src="/next.svg" className='w-4 rotate-y-180' alt="next" />
-            Prev
+            <span className="max-[375px]:hidden">
+                Prev
+            </span>
         </button>
     )
 }

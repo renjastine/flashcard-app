@@ -12,8 +12,10 @@ function ShuffleCard({ setCurrentIndex, flashcards, setFlashcards }: ShuffleCard
             onClick={handleClick}
             className='flex items-center px-5 gap-3 h-10 bg-white rounded-md shadow-sm select-none cursor-pointer'
         >
-            <img src="/shuffle.svg" className='w-4' alt="shuffle" />
-            Shuffle
+            <img src="/shuffle.svg" style={{ width: '16px' }} alt="shuffle" />
+            <span className="max-[375px]:hidden">
+                Shuffle
+            </span>
         </button>
     )
 }

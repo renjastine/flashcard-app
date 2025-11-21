@@ -1,7 +1,4 @@
-'use client';
-import { useState } from 'react'
 import { FlashcardProps } from '../types';
-
 const Flashcards = ({ flipped, setFlipped, question, answer }: FlashcardProps) => {
   return (
     <div

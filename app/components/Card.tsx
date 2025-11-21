@@ -37,7 +37,14 @@ function Card({
                     setEditMode={setEditMode}
                     containerRef={containerRef}
                 />
-                {/* <CardListControl controlName="delete" /> */}
+                <CardListControl
+                    controlName="delete"
+                    keyID={keyID}
+                    cardID={cardID}
+                    setCard={setCard}
+                    flashCards={flashCards}
+                    setFlashCards={setFlashCards}
+                />
             </div>
             <div className='flex gap-3'>
                 <div className='flex-none pt-1'>

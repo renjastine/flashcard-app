@@ -37,10 +37,18 @@ function CardListControl({
         if (card) setCard?.(card)
     }
 
+    function deleteCard() {
+        const copy = [...flashCards]
+        const index = copy.findIndex(c => c.id === cardID);
+        copy.splice(index, 1)
+        setFlashCards(copy)
+    }
+
     const handleClick = () => {
         if (controlName === "moveUp") moveCard("up")
         if (controlName === "moveDown") moveCard("down")
         if (controlName === "edit") editCard()
+        if (controlName === "delete") deleteCard()
     }
 
     return (

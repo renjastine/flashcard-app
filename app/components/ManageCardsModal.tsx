@@ -1,18 +1,15 @@
 'use client';
 
-// Hooks
 import { useRef, useState } from 'react'
 
-// Components
-import Textarea from './Textarea'
+import DeleteAllCard from './DeleteAllCard';
 import CardControl from './CardControl'
+import Textarea from './Textarea'
 import Card from './Card'
 
-// Types
+import { initialCards } from '../data';
 import { CardT } from '../types';
 
-// Data
-import { initialCards } from '../data';
 
 const ManageCardsModal = () => {
   const [flashCards, setFlashCards] = useState<CardT[]>(initialCards);
@@ -66,7 +63,12 @@ const ManageCardsModal = () => {
               setEditMode={setEditMode}
             />
           </dl>
-          <h1 className='mt-4 text-sm mb-2'>Your Flashcards ({flashCards.length})</h1>
+          <div className="mt-4 text-sm mb-2 flex items-center justify-between">
+            <h1 className=''>Your Flashcards ({flashCards.length})</h1>
+            <DeleteAllCard
+              setFlashCards={val => setFlashCards(val)}
+            />
+          </div>
           <div className='flex flex-col gap-3'>
             {flashCards.map(
               (card, i) =>

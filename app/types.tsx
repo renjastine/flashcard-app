@@ -54,3 +54,7 @@ export type UpdateCardProps = {
     setFlashCards: (val: CardT) => void;
     setEditMode: (val: boolean) => void;
 }
+
+export type DeleteAllProps = {
+    setFlashCards: (val: CardT[]) => void;
+}

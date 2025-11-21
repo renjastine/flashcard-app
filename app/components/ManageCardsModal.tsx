@@ -43,6 +43,7 @@ const ManageCardsModal = ({ setManageCard }: ManageCardsModalProps) => {
 
   const handleClick = () => {
     setTranslateY("translate-y-50 opacity-0");
+
     setTimeout(() => {
       setManageCard(false);
     }, 300)
@@ -109,8 +110,7 @@ const ManageCardsModal = ({ setManageCard }: ManageCardsModalProps) => {
                   setFlashCards={val => setFlashCards(val)}
                   setEditMode={val => setEditMode(val)}
                   containerRef={containerRef}
-                />
-            )}
+                />)}
           </div>
         </div>
       </div>

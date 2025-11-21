@@ -17,7 +17,7 @@ function CardControl({
     setEditMode
 }: CardControlProp) {
     return (
-        <div className='flex gap-2 flex-wrap'>
+        <div className='flex gap-2 flex-wrap select-none'>
             {editMode ?
                 <>
                     <UpdateCard 

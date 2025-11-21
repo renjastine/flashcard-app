@@ -7,6 +7,7 @@ function Textarea({ value, setCard, placeholder }: TextareaProps) {
     }
     return (
         <textarea
+            required
             className='bg-white rounded-md min-h-25 p-2 text-sm my-2 field-sizing-content resize-none'
             value={value}
             onChange={handleChanges}

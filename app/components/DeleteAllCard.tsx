@@ -1,8 +1,9 @@
 import { DeleteAllProps } from "../types"
 
-function DeleteAllCard({ setFlashCards }: DeleteAllProps) {
+function DeleteAllCard({ editMode, setEditMode, setFlashCards }: DeleteAllProps) {
     const handleClick = () => {
         setFlashCards([]);
+        if (editMode) setEditMode(false)
     }
 
     return (

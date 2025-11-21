@@ -11,7 +11,7 @@ function AddCard({
 }: AddFlashCardProps) {
 
     const handleClick = () => {
-        setFlashCards(card);
+        if (flashCards.length < 200 && card.q !== "" && card.a !== "") setFlashCards(card)
     }
 
     useEffect(() => {

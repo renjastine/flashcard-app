@@ -7,8 +7,8 @@ import CardControl from './CardControl'
 import Textarea from './Textarea'
 import Card from './Card'
 
-import { initialCards } from '../data';
 import { CardT } from '../types';
+import { initialCards } from '../data';
 
 
 const ManageCardsModal = () => {
@@ -66,6 +66,8 @@ const ManageCardsModal = () => {
           <div className="mt-4 text-sm mb-2 flex items-center justify-between">
             <h1 className=''>Your Flashcards ({flashCards.length})</h1>
             <DeleteAllCard
+              editMode={editMode}
+              setEditMode={setEditMode}
               setFlashCards={val => setFlashCards(val)}
             />
           </div>

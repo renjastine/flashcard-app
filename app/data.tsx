@@ -1,6 +1,6 @@
 import { CardT } from "./types";
 
-export const initialCards: CardT[] = [
+export const createCards: CardT[] = [
   {
     id: 1,
     q: "What is 2 + 2?",

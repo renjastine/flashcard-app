@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import DeleteAllCard from './DeleteAllCard';
 import CardControl from './CardControl'
@@ -8,11 +8,11 @@ import Textarea from './Textarea'
 import Card from './Card'
 
 import { CardT } from '../types';
-import { initialCards } from '../data';
+import { createCards } from '../data';
 
 
 const ManageCardsModal = () => {
-  const [flashCards, setFlashCards] = useState<CardT[]>(initialCards);
+  const [flashCards, setFlashCards] = useState<CardT[]>([]);
   const [editMode, setEditMode] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -30,6 +30,13 @@ const ManageCardsModal = () => {
     q: "",
     a: ""
   });
+
+  useEffect(() => {
+    const storage = localStorage.getItem("flashcards");
+    const initialCards = storage && storage !== "[]" ? JSON.parse(storage) : createCards;
+    setFlashCards(initialCards)
+
+  }, [])
 
   return (
     <div className='bg-black/30 fixed w-screen h-screen z-1 top-0 left-0 flex items-center justify-center px-4'>

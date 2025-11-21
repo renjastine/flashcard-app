@@ -60,3 +60,7 @@ export type DeleteAllProps = {
     setEditMode: (val: boolean) => void;
     setFlashCards: (val: CardT[]) => void;
 }
+
+export type SaveCardProps = {
+    flashCards: CardT[];
+}

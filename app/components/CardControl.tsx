@@ -20,7 +20,7 @@ function CardControl({
         <div className='flex gap-2 flex-wrap select-none'>
             {editMode ?
                 <>
-                    <UpdateCard 
+                    <UpdateCard
                         card={card}
                         flashCards={flashCards}
                         setFlashCards={setFlashCards}
@@ -38,7 +38,9 @@ function CardControl({
                         setFlashCards={val => setFlashCards(val)}
                         flashCards={flashCards}
                     />
-                    <SaveCard />
+                    <SaveCard
+                        flashCards={flashCards}
+                    />
                 </>
             }
 

@@ -5,7 +5,7 @@ function SaveCard({ flashCards, setMessage }: SaveCardProps) {
         localStorage.setItem("flashcards", JSON.stringify(flashCards));
         setMessage("Saved!");
 
-        setTimeout(()=> {
+        setTimeout(() => {
             setMessage("");
         }, 1500)
 
@@ -18,7 +18,9 @@ function SaveCard({ flashCards, setMessage }: SaveCardProps) {
             className="flex items-center px-3 gap-2 h-9 bg-white text-black rounded-md w-fit cursor-pointer hover:bg-stone-50"
         >
             <img className="w-4" src="/save.svg" alt="save" />
-            Save to Device
+            <span className="max-[375px]:hidden">
+                Save to Device
+            </span>
         </button >
     )
 }

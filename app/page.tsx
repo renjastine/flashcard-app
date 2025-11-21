@@ -5,15 +5,20 @@ import ManageCardsModal from "./components/ManageCardsModal";
 import { CardT } from "./types";
 import { createCards } from "./data";
 import NoDisplay from "./components/NoDisplay";
+import NextCard from "./components/NextCard";
+import PrevCard from "./components/PrevCard";
+import ShuffleCard from "./components/ShuffleCard";
 
 export default function Home() {
   const [manageCard, setManageCard] = useState(false)
   const [flashcards, setFlashcards] = useState<CardT[]>([]);
-  const [noDisplay, setNoDisplay] = useState(false);
+  const [noDisplay, setNoDisplay] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [flipped, setFlipped] = useState(false);
 
   useEffect(() => {
     const storage = localStorage.getItem("flashcards");
-    const initialCards = storage && storage !== "[]" ? JSON.parse(storage) : [];
+    const initialCards = storage && storage !== "[]" ? JSON.parse(storage) : createCards;
     setFlashcards(initialCards);
 
   }, [])
@@ -44,26 +49,43 @@ export default function Home() {
                 onClick={handleClick}
                 className="select-none flex items-center border px-3 gap-2 h-9 bg-stone-900 text-stone-100 rounded-md cursor-pointer"
               >
-                <img className="w-4" src="/add-white.svg" alt="add" />
+                <img className="w-4 pointer-events-none" src="/add-white.svg" alt="add" />
                 Manage Cards
               </button >
             </div >
-            <h1 className="text-stone-400">Card 1 of {flashcards.length}</h1>
-            <Flashcards />
+            <h1 className="text-stone-400">Card {currentIndex + 1} of {flashcards.length}</h1>
+            <Flashcards
+              flipped={flipped}
+              setFlipped={setFlipped}
+              question={flashcards[currentIndex]?.q}
+              answer={flashcards[currentIndex]?.a}
+            />
             <div className='flex gap-5'>
-              <button className='flex items-center px-5 gap-3 h-10 bg-white rounded-md shadow-sm'>
-                <img src="/shuffle.svg" className='w-4' alt="shuffle" />
-                Shuffle
-              </button>
-              <button className='flex items-center px-5 gap-3 h-10 bg-gray-950 rounded-md shadow-sm text-gray-50'>
-                Next
-                <img src="/next.svg" className='w-4' alt="shuffle" />
-              </button>
+              <PrevCard
+                setFlipped={val => setFlipped(val)}
+                flashcardsLen={flashcards.length}
+                currentIndex={currentIndex}
+                setCurrentIndex={val => setCurrentIndex(val)}
+              />
+              <ShuffleCard
+                setCurrentIndex={val => setCurrentIndex(val)}
+                flashcards={flashcards}
+                setFlashcards={val => setFlashcards(val)}
+              />
+              <NextCard
+                setFlipped={val => setFlipped(val)}
+                flashcardsLen={flashcards.length}
+                currentIndex={currentIndex}
+                setCurrentIndex={val => setCurrentIndex(val)}
+              />
             </div>
           </>}
         {manageCard &&
           <ManageCardsModal
+            setCurrentIndex={val => setCurrentIndex(val)}
             setManageCard={setManageCard}
+            flashcards={flashcards}
+            setFlashcards={val => Array.isArray(val) ? setFlashcards(val) : setFlashcards(prev => [...prev, val])}
           />}
       </main>
     </div>

@@ -5,19 +5,27 @@ import { AddFlashCardProps } from "../types";
 function AddCard({
     card,
     setCard,
-    setFlashCards,
-    flashCards,
-    createUniqueId
+    setFlashcards,
+    flashcards,
+    createUniqueId,
+    setMessage
 }: AddFlashCardProps) {
 
     const handleClick = () => {
-        if (flashCards.length < 200 && card.q !== "" && card.a !== "") setFlashCards(card)
+        if (flashcards.length < 200 && card.q !== "" && card.a !== "") {
+            setFlashcards(card)
+            setMessage?.("Item Added!");
+
+            setTimeout(() => {
+                setMessage?.("");
+            }, 1500)
+        }
     }
 
     useEffect(() => {
         const nextID = createUniqueId();
         setCard({ id: nextID, q: "", a: "" });
-    }, [flashCards])
+    }, [flashcards])
 
     return (
         < button

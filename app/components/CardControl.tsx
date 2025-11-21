@@ -6,24 +6,26 @@ import SaveCard from './SaveCard'
 
 // Types
 import { CardControlProp } from '../types';
+import { useState } from 'react';
 
 function CardControl({
     card,
     setCard,
-    setFlashCards,
-    flashCards,
+    setFlashcards,
+    flashcards,
     createUniqueId,
     editMode,
     setEditMode
 }: CardControlProp) {
+    const [message, setMessage] = useState("");
     return (
-        <div className='flex gap-2 flex-wrap select-none'>
+        <div className='flex gap-2 flex-wrap select-none items-center'>
             {editMode ?
                 <>
                     <UpdateCard
                         card={card}
-                        flashCards={flashCards}
-                        setFlashCards={setFlashCards}
+                        flashCards={flashcards}
+                        setFlashCards={setFlashcards}
                         setEditMode={setEditMode}
                     />
                     <CancelUpdate
@@ -32,19 +34,20 @@ function CardControl({
                 </> :
                 <>
                     <AddCard
+                        setMessage={val => setMessage(val)}
                         card={card}
                         setCard={setCard}
                         createUniqueId={createUniqueId}
-                        setFlashCards={val => setFlashCards(val)}
-                        flashCards={flashCards}
+                        setFlashcards={val => setFlashcards(val)}
+                        flashcards={flashcards}
                     />
                     <SaveCard
-                        flashCards={flashCards}
+                        setMessage={val => setMessage(val)}
+                        flashCards={flashcards}
                     />
                 </>
             }
-
-
+            <span className='text-green-600'>{message}</span>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { CardListControlProps, CardT } from "../types";
+import { CardListControlProps } from "../types";
 function CardListControl({
     controlName,
     keyID,

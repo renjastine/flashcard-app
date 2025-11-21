@@ -15,9 +15,10 @@ export type CardT = {
 export type AddFlashCardProps = {
     card: CardT;
     setCard: (val: CardT) => void;
-    setFlashCards: (val: CardT) => void;
-    flashCards: CardT[];
+    setFlashcards: (val: CardT) => void;
+    flashcards: CardT[];
     createUniqueId: () => number;
+    setMessage?: (val: string) => void;
 }
 
 export type CardControlProp = AddFlashCardProps & {
@@ -30,8 +31,8 @@ export type CardProps = {
     setCard: (val: CardT) => void;
     question: string;
     answer: string;
-    flashCards: CardT[];
-    setFlashCards: (val: CardT[]) => void;
+    flashcards: CardT[];
+    setFlashcards: (val: CardT[]) => void;
     setEditMode: (val: boolean) => void;
     containerRef: RefObject<HTMLDivElement | null>;
     cardID: number
@@ -62,9 +63,36 @@ export type DeleteAllProps = {
 }
 
 export type SaveCardProps = {
+    setMessage: (val: string) => void;
     flashCards: CardT[];
 }
 
-export type ManageCardsModalProps = {
+export type NoDisplayProps = {
     setManageCard: (val: boolean) => void;
+}
+
+export type ManageCardsModalProps = NoDisplayProps & {
+    setCurrentIndex: (val: number) => void;
+    flashcards: CardT[];
+    setFlashcards: (val: CardT | CardT[]) => void
+}
+
+export type FlashcardProps = {
+    flipped: boolean;
+    setFlipped: (val: boolean) => void;
+    question: string;
+    answer: string;
+}
+
+export type NextCardProps = {
+    setFlipped: (val: boolean) => void;
+    flashcardsLen: number;
+    currentIndex: number;
+    setCurrentIndex: (val: number) => void;
+}
+
+export type ShuffleCardProps = {
+    setCurrentIndex: (val: number) => void;
+    flashcards: CardT[];
+    setFlashcards: (val: CardT[]) => void;
 }

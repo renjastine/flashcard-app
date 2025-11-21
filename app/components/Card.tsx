@@ -7,8 +7,8 @@ function Card({
     setCard,
     question,
     answer,
-    flashCards,
-    setFlashCards,
+    flashcards,
+    setFlashcards,
     setEditMode,
     containerRef,
 }: CardProps) {
@@ -18,22 +18,22 @@ function Card({
                 <CardListControl
                     controlName={keyID > 0 ? "moveUp" : "moveUpDisabled"}
                     keyID={keyID}
-                    flashCards={flashCards}
-                    setFlashCards={setFlashCards}
+                    flashCards={flashcards}
+                    setFlashCards={setFlashcards}
                 />
                 <CardListControl
-                    controlName={keyID === flashCards.length - 1 ? "moveDownDisabled" : "moveDown"}
+                    controlName={keyID === flashcards.length - 1 ? "moveDownDisabled" : "moveDown"}
                     keyID={keyID}
-                    flashCards={flashCards}
-                    setFlashCards={setFlashCards}
+                    flashCards={flashcards}
+                    setFlashCards={setFlashcards}
                 />
                 <CardListControl
                     controlName="edit"
                     keyID={keyID}
                     cardID={cardID}
                     setCard={setCard}
-                    flashCards={flashCards}
-                    setFlashCards={setFlashCards}
+                    flashCards={flashcards}
+                    setFlashCards={setFlashcards}
                     setEditMode={setEditMode}
                     containerRef={containerRef}
                 />
@@ -42,8 +42,8 @@ function Card({
                     keyID={keyID}
                     cardID={cardID}
                     setCard={setCard}
-                    flashCards={flashCards}
-                    setFlashCards={setFlashCards}
+                    flashCards={flashcards}
+                    setFlashCards={setFlashcards}
                 />
             </div>
             <div className='flex gap-3'>

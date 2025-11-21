@@ -10,14 +10,14 @@ import Card from './Card'
 import { CardT, ManageCardsModalProps } from '../types';
 import { createCards } from '../data';
 
-const ManageCardsModal = ({ setManageCard }: ManageCardsModalProps) => {
-  const [flashCards, setFlashCards] = useState<CardT[]>([]);
+const ManageCardsModal = ({ setCurrentIndex, setManageCard, flashcards, setFlashcards }: ManageCardsModalProps) => {
+  // const [manageFlashcards, setManageFlashcards] = useState<CardT[]>([]);
   const [editMode, setEditMode] = useState(false);
   const [translateY, setTranslateY] = useState("translate-y-50 opacity-0")
   const containerRef = useRef<HTMLDivElement>(null);
 
   const createUniqueId = (): number => {
-    const sorted = [...flashCards].sort((a, b) => a.id - b.id);
+    const sorted = [...flashcards].sort((a, b) => a.id - b.id);
 
     if (sorted.length > 0)
       return sorted[sorted.length - 1].id + 1
@@ -32,10 +32,6 @@ const ManageCardsModal = ({ setManageCard }: ManageCardsModalProps) => {
   });
 
   useEffect(() => {
-    const storage = localStorage.getItem("flashcards");
-    const initialCards = storage && storage !== "[]" ? JSON.parse(storage) : createCards;
-    setFlashCards(initialCards)
-
     setTimeout(() => {
       setTranslateY("translate-y-0");
     }, 1)
@@ -46,7 +42,12 @@ const ManageCardsModal = ({ setManageCard }: ManageCardsModalProps) => {
 
     setTimeout(() => {
       setManageCard(false);
+      setCurrentIndex(0)
     }, 300)
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
   }
 
   return (
@@ -61,11 +62,11 @@ const ManageCardsModal = ({ setManageCard }: ManageCardsModalProps) => {
           <img src="/x-close.svg" className='pointer-events-none' alt="close" />
         </div>
         <div className='flex justify-between'>
-          <h1 className='text-xl font-medium'>Manage Flashcards</h1>
+          <h1 className='text-xl font-medium'>Manage flashcards</h1>
         </div>
         <h2 className='text-sm text-stone-400 my-2'>Add, Edit, Delete, or Reorder your flashcards</h2>
         <div ref={containerRef} className='max-h-123 overflow-y-auto text-sm'>
-          <dl className='rounded-md w-full flex flex-col px-4 py-5 bg-gray-200'>
+          <form onSubmit={handleSubmit} className='rounded-md w-full flex flex-col px-4 py-5 bg-gray-200'>
             <dt>Question</dt>
             <Textarea
               value={card.q}
@@ -82,22 +83,22 @@ const ManageCardsModal = ({ setManageCard }: ManageCardsModalProps) => {
               card={card}
               setCard={setCard}
               createUniqueId={createUniqueId}
-              setFlashCards={val => setFlashCards(prev => [...prev, val])}
-              flashCards={flashCards}
+              setFlashcards={val => setFlashcards(val)}
+              flashcards={flashcards}
               editMode={editMode}
               setEditMode={setEditMode}
             />
-          </dl>
+          </form>
           <div className="mt-4 text-sm mb-2 flex items-center justify-between">
-            <h1 className=''>Your Flashcards ({flashCards.length})</h1>
+            <h1 className=''>Your flashcards ({flashcards.length})</h1>
             <DeleteAllCard
               editMode={editMode}
               setEditMode={setEditMode}
-              setFlashCards={val => setFlashCards(val)}
+              setFlashCards={val => setFlashcards(val)}
             />
           </div>
           <div className='flex flex-col gap-3'>
-            {flashCards.map(
+            {flashcards.map(
               (card, i) =>
                 <Card
                   key={card.id}
@@ -106,8 +107,8 @@ const ManageCardsModal = ({ setManageCard }: ManageCardsModalProps) => {
                   setCard={setCard}
                   question={card.q}
                   answer={card.a}
-                  flashCards={flashCards}
-                  setFlashCards={val => setFlashCards(val)}
+                  flashcards={flashcards}
+                  setFlashcards={val => setFlashcards(val)}
                   setEditMode={val => setEditMode(val)}
                   containerRef={containerRef}
                 />)}

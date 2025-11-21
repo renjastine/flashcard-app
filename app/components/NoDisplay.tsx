@@ -1,6 +1,6 @@
-import { ManageCardsModalProps } from '../types'
+import { NoDisplayProps } from '../types'
 
-function NoDisplay({ setManageCard } : ManageCardsModalProps) {
+function NoDisplay({ setManageCard } : NoDisplayProps) {
     const handleClick = () => {
         setManageCard(true);
     }
